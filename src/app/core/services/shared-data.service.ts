@@ -10,7 +10,7 @@ export class SharedDataService {
     return [
       { name: 'iPhone 15', imgPath: 'iphone.jpg', price: 999 },
       { name: 'MacBook Pro', imgPath: 'macbook.jpg', price: 1999 },
-      { name: 'AirPods Pro', imgPath: 'airpods.png', price: 249 },
+      { name: 'AirPods Pro', imgPath: 'airpods.jpg', price: 249 },
     ];
   }
 
@@ -35,12 +35,20 @@ export class SharedDataService {
       {
         name: 'Laptops',
         products: [
-          { name: 'Dell XPS 15', imgPath: 'dell.jpg', price: 1500 },
+          { name: 'Dell XPS 15', imgPath: '/dell.jpg', price: 1500 },
           {
             name: 'Lenovo ThinkPad',
             imgPath: 'thinkpad.jpg',
             price: 1200,
           },
+          { name: 'MacBook Pro', imgPath: 'macbook.jpg', price: 1999 },
+        ],
+      },
+      {
+        name: 'Accessories',
+        products: [
+          { name: 'AirPods Pro', imgPath: 'airpods.jpg', price: 249 },
+          { name: 'Apple Watch Series 8', imgPath: '/watch.jpg', price: 399 },
         ],
       },
     ];

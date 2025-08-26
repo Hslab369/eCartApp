@@ -1,56 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SharedDataService {
-  constructor() {}
+  constructor(private http: HttpClient) { }
 
-  getFrequentlyOrdered() {
-    return [
-      { name: 'iPhone 15', imgPath: 'iphone.jpg', price: 999 },
-      { name: 'MacBook Pro', imgPath: 'macbook.jpg', price: 1999 },
-      { name: 'AirPods Pro', imgPath: 'airpods.jpg', price: 249 },
-    ];
+  getFrequentlyOrdered(): Observable<any> {
+    return this.http.get('http://127.0.0.1:8000/getFrequentlyOrdered');
   }
 
-  getCategories() {
-    return [
-      {
-        name: 'Mobiles',
-        products: [
-          {
-            name: 'Samsung Galaxy S24',
-            imgPath: 'samsung.jpg',
-            price: 899,
-          },
-          {
-            name: 'Google Pixel 9',
-            imgPath: 'pixel.jpg',
-            price: 799,
-          },
-          { name: 'iPhone 15', imgPath: 'iphone.jpg', price: 999 },
-        ],
-      },
-      {
-        name: 'Laptops',
-        products: [
-          { name: 'Dell XPS 15', imgPath: 'dell.jpg', price: 1500 },
-          {
-            name: 'Lenovo ThinkPad',
-            imgPath: 'thinkpad.jpg',
-            price: 1200,
-          },
-          { name: 'MacBook Pro', imgPath: 'macbook.jpg', price: 1999 },
-        ],
-      },
-      {
-        name: 'Accessories',
-        products: [
-          { name: 'AirPods Pro', imgPath: 'airpods.jpg', price: 249 },
-          { name: 'Apple Watch Series 8', imgPath: 'watch.jpg', price: 399 },
-        ],
-      },
-    ];
+  getCategories(): Observable<any> {
+    return this.http.get('http://127.0.0.1:8000/getCategories');
   }
 }

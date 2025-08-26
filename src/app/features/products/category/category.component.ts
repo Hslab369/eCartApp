@@ -12,6 +12,8 @@ import { SharedDataService } from '../../../core/services/shared-data.service';
 export class CategoryComponent {
   categories: any[] = [];
   constructor(private dataService: SharedDataService) {
-    this.categories = this.dataService.getCategories();
+    this.dataService.getCategories().subscribe(res => {
+      this.categories = res
+    });;
   }
 }

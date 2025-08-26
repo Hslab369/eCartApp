@@ -13,6 +13,8 @@ export class FrequentlyOrderedComponent {
   items: any[] = [];
 
   constructor(private dataService: SharedDataService) {
-    this.items = this.dataService.getFrequentlyOrdered();
+    this.dataService.getFrequentlyOrdered().subscribe(res => {
+      this.items = res
+    });
   }
 }

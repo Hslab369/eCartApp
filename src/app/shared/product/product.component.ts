@@ -5,10 +5,12 @@ import { CommonModule } from '@angular/common';
   selector: 'app-product',
   imports: [CommonModule],
   templateUrl: './product.component.html',
-  styleUrl: './product.component.css'
+  styleUrl: './product.component.css',
 })
 export class ProductComponent {
   @Input() name!: string;
   @Input() imgPath!: string;
   @Input() price!: number;
+
+  @Input() cardType: 'small' | 'normal' = 'normal';
 }

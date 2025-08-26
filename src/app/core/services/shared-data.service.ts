@@ -35,7 +35,7 @@ export class SharedDataService {
       {
         name: 'Laptops',
         products: [
-          { name: 'Dell XPS 15', imgPath: '/dell.jpg', price: 1500 },
+          { name: 'Dell XPS 15', imgPath: 'dell.jpg', price: 1500 },
           {
             name: 'Lenovo ThinkPad',
             imgPath: 'thinkpad.jpg',
@@ -48,7 +48,7 @@ export class SharedDataService {
         name: 'Accessories',
         products: [
           { name: 'AirPods Pro', imgPath: 'airpods.jpg', price: 249 },
-          { name: 'Apple Watch Series 8', imgPath: '/watch.jpg', price: 399 },
+          { name: 'Apple Watch Series 8', imgPath: 'watch.jpg', price: 399 },
         ],
       },
     ];

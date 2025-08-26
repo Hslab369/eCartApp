@@ -7,7 +7,7 @@ import { SharedDataService } from '../../../core/services/shared-data.service';
   selector: 'app-frequently-ordered',
   imports: [CommonModule, ProductComponent],
   templateUrl: './frequently-ordered.component.html',
-  styleUrls: ['./frequently-ordered.component.css'],
+  styleUrl: './frequently-ordered.component.css',
 })
 export class FrequentlyOrderedComponent {
   items: any[] = [];

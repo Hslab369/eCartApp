@@ -12,6 +12,7 @@
           {{ cat.name }}
         </button>
       </h2>
+
       <div
         [id]="'collapse' + i"
         class="accordion-collapse collapse"
@@ -20,11 +21,12 @@
       >
         <div class="accordion-body">
           <div class="row g-4">
-            <div class="col-md-4" *ngFor="let item of cat.products">
+            <div class="col-md-3" *ngFor="let item of cat.products">
               <app-product
                 [name]="item.name"
                 [imgPath]="item.imgPath"
                 [price]="item.price"
+                cardType="normal"
               ></app-product>
             </div>
           </div>

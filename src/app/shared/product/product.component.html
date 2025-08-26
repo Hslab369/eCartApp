@@ -1,8 +1,30 @@
-<div class="card h-100 shadow-sm">
-  <img [src]="imgPath" class="card-img-top img-thumbnail" alt="{{ name }}" />
-  <div class="card-body text-center">
-    <h5 class="card-title">{{ name }}</h5>
-    <p class="text-muted mb-2">${{ price }}</p>
-    <button class="btn btn-primary btn-sm">Add to Cart</button>
+<ng-container *ngIf="cardType === 'small'; else normalCard">
+  <!-- Small Card -->
+  <div class="card h-100 shadow-sm" style="max-width: 200px">
+    <div style="height: 100px">
+      <img
+        [src]="imgPath"
+        class="card-img-top img-thumbnail w-100 h-100 object-fit-cover"
+        alt="{{ name }}"
+      />
+    </div>
+    <div class="card-body text-center" style="max-height: 50px">
+      <div>
+        <h5 class="card-title" style="font-size: 12px">{{ name }}</h5>
+      </div>
+    </div>
   </div>
-</div>
+</ng-container>
+<ng-template #normalCard>
+  <!-- Normal Card -->
+  <div class="card h-100 shadow-sm" style="max-width: 300px">
+    <img [src]="imgPath" class="card-img-top img-thumbnail" alt="{{ name }}" />
+    <div class="card-body d-flex flex-column text-center">
+      <div class="mt-auto mb-0">
+        <h5 class="card-title">{{ name }}</h5>
+        <p class="text-muted">${{ price }}</p>
+      </div>
+      <button class="btn btn-primary btn-sm mt-0">Add to Cart</button>
+    </div>
+  </div>
+</ng-template>

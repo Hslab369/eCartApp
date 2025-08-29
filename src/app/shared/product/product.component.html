@@ -8,21 +8,26 @@
         alt="{{ name }}"
       />
     </div>
-    <div class="card-body text-center" style="max-height: 50px">
-      <div>
-        <h5 class="card-title" style="font-size: 12px">{{ name }}</h5>
-      </div>
+    <div class="card-body" style="max-height: 50px">
+      <h5 class="card-title text-center" style="font-size: 12px">
+        {{ name }}
+      </h5>
     </div>
   </div>
 </ng-container>
+
 <ng-template #normalCard>
   <!-- Normal Card -->
   <div class="card h-100 shadow-sm" style="max-width: 300px">
-    <img [src]="imgPath" class="card-img-top img-thumbnail" alt="{{ name }}" />
+    <img
+      [src]="imgPath"
+      class="card-img-top h-100 object-fit-cover"
+      alt="{{ name }}"
+    />
     <div class="card-body d-flex flex-column text-center">
       <div class="mt-auto mb-0">
         <h5 class="card-title">{{ name }}</h5>
-        <p class="text-muted">${{ price }}</p>
+        <p class="fw-semibold text-danger">{{ price | currency : "INR" }}</p>
       </div>
       <button class="btn btn-primary btn-sm mt-0">Add to Cart</button>
     </div>

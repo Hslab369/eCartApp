@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ProductComponent } from '../../../shared/product/product.component';
 import { SharedDataService } from '../../../core/services/shared-data.service';
+import { Product } from '../../../models/product.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-frequently-ordered',
   imports: [CommonModule, ProductComponent],
   templateUrl: './frequently-ordered.component.html',
-  styleUrl: './frequently-ordered.component.css',
+  styleUrls: ['./frequently-ordered.component.css'],
 })
 export class FrequentlyOrderedComponent {
-  items: any[] = [];
+  items: Product[] = [];
 
-  constructor(private dataService: SharedDataService) {
-    this.dataService.getFrequentlyOrdered().subscribe(res => {
-      this.items = res
+  constructor(private dataService: SharedDataService) {}
+
+  ngOnInit(): void {
+    this.dataService.getFrequentlyOrdered().subscribe((data) => {
+      this.items = data;
     });
   }
 }

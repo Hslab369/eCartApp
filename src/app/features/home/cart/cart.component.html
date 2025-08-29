@@ -1,0 +1,11 @@
+<h4 class="mb-3">Trending Products</h4>
+<div class="row g-4 mb-4">
+  <div class="col-md-3" *ngFor="let item of products">
+    <app-product
+      [name]="item.name"
+      [imgPath]="item.imgPath"
+      [price]="item.price"
+      cardType="normal"
+    ></app-product>
+  </div>
+</div>

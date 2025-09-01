@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductComponent } from '../../../shared/product/product.component';
-import { SharedDataService } from '../../../core/services/shared-data.service';
+import { SharedDataService } from '../../../core/services/data.service';
 import { Product } from '../../../models/product.model';
 import { CommonModule } from '@angular/common';
 
@@ -10,14 +10,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './frequently-ordered.component.html',
   styleUrls: ['./frequently-ordered.component.css'],
 })
-export class FrequentlyOrderedComponent {
-  items: Product[] = [];
+export class FrequentlyOrderedComponent implements OnInit{
+  products: Product[] = [];
 
   constructor(private dataService: SharedDataService) {}
 
   ngOnInit(): void {
     this.dataService.getFrequentlyOrdered().subscribe((data) => {
-      this.items = data;
+      this.products = data;
     });
   }
 }

@@ -1,37 +1,28 @@
 <div class="container mt-4">
-  <h3 class="mb-3">Categories</h3>
-  <div class="accordion" id="categoriesAccordion">
-    <div class="accordion-item" *ngFor="let cat of categories; let i = index">
-      <h2 class="accordion-header" id="heading{{ i }}">
-        <button
-          class="accordion-button collapsed"
-          type="button"
-          data-bs-toggle="collapse"
-          [attr.data-bs-target]="'#collapse' + i"
-        >
-          {{ cat.name }}
-        </button>
-      </h2>
+  <h3 class="mb-3 fw-semibold">Categories</h3>
 
-      <div
-        [id]="'collapse' + i"
-        class="accordion-collapse collapse"
-        [attr.aria-labelledby]="'heading' + i"
-        data-bs-parent="#categoriesAccordion"
-      >
-        <div class="accordion-body">
-          <div class="row g-4">
-            <div class="col-md-3" *ngFor="let item of cat.products">
-              <app-product
-                [name]="item.name"
-                [imgPath]="item.imgPath"
-                [price]="item.price"
-                cardType="normal"
-              ></app-product>
-            </div>
-          </div>
+  <mat-accordion multi>
+    <mat-expansion-panel *ngFor="let cat of categories">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="me-2">category</mat-icon>
+          {{ cat.name }}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{ cat.products.length }} items
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="row g-4">
+        <div class="col-md-3" *ngFor="let item of cat.products">
+          <app-product
+            [name]="item.name"
+            [imgPath]="item.imgPath"
+            [price]="item.price"
+            cardType="normal"
+          ></app-product>
         </div>
       </div>
-    </div>
-  </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

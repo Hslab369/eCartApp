@@ -1,11 +1,11 @@
 <div class="container mt-4">
   <h3 class="mb-3">Frequently Ordered</h3>
-  <div class="row">
-    <div class="col-md-2" *ngFor="let item of items">
+  <div class="row row-cols-md-6">
+    <div class="col" *ngFor="let product of products">
       <app-product
-        [name]="item.name"
-        [imgPath]="item.imgPath"
-        [price]="item.price"
+        [name]="product.name"
+        [imgPath]="product.imgPath"
+        [price]="product.price"
         cardType="small"
       ></app-product>
     </div>

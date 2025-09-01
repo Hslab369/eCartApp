@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { Product } from '../../models/product.model';
 import { Category } from '../../models/category.model';
 import { Order } from '../../models/order.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SharedDataService {
-  private apiUrl = 'http://127.0.0.1:8000';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

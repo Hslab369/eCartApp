@@ -2,7 +2,7 @@
   <h3 class="mb-3 fw-semibold">Categories</h3>
 
   <mat-accordion multi>
-    <mat-expansion-panel *ngFor="let cat of categories">
+    <mat-expansion-panel *ngFor="let cat of categories$ | async">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon class="me-2">category</mat-icon>

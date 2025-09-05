@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedDataService } from '../../../core/services/data.service';
 import { CommonModule } from '@angular/common';
+import { Order } from '../../../models/order.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-order',
@@ -8,10 +10,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css'],
 })
-export class OrderComponent {
-  orders: any[] = [];
+export class OrderComponent implements OnInit {
+  orders$!: Observable<Order[]>;
 
-  constructor(private shared: SharedDataService) {
-    this.shared.getOrders().subscribe((res) => (this.orders = res));
+  constructor(private shared: SharedDataService) {}
+
+  ngOnInit() {
+    this.orders$ = this.shared.getOrders();
   }
 }

@@ -7,7 +7,7 @@ import { SharedDataService } from '../../../core/services/data.service';
 
 @Component({
   selector: 'app-cart',
-  standalone: true,
+  standalone: true, 
   imports: [CommonModule, ProductComponent],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],

@@ -12,19 +12,19 @@
   <ul class="list-group">
     <li
       class="list-group-item d-flex justify-content-between align-items-center"
-      *ngFor="let order of orders"
+      *ngFor="let order of orders$ | async"
     >
       <span>{{ order.date }}</span>
       <span>{{ order.price | currency : "INR" }}</span>
       <span
         class="badge rounded-pill"
         [ngClass]="{
-          'text-bg-success': order.status === 'Delivered',
-          'text-bg-warning': order.status === 'Pending',
-          'text-bg-danger': order.status === 'Cancelled'
+          'text-bg-success': order.status.toLowerCase() === 'delivered',
+          'text-bg-warning': order.status.toLowerCase() === 'pending',
+          'text-bg-danger': order.status.toLowerCase() === 'cancelled'
         }"
       >
-        {{ order.status }}
+        {{ order.status | titlecase }}
         <span class="visually-hidden">status</span>
       </span>
     </li>

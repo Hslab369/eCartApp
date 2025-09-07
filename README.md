@@ -1,149 +1,129 @@
-***
+# 🛒 Angular eCartApp (Frontend)
 
-# 🛒 ECartApp
+This project is a **modern Angular 19 frontend** for an e-commerce demo app.
+It follows **industry best practices** with:
 
-ECartApp is a simple **e-commerce shopping cart web application** built with **Angular 19**.  
-It demonstrates modern Angular concepts such as components, services, data binding, and routing.
+* **Standalone Components** (no NgModules)
+* **Typed Models** for strong typing (`Product`, `Category`, `Order`)
+* **Reactive Forms** with validation (Login page)
+* **Async Observables with AsyncPipe** (no manual subscriptions)
+* **Angular Material** (Accordion, Navbar, Forms)
+* **Reusable UI Components** (Product Card shared across views)
 
-***
+It consumes a **FastAPI backend** (separate repo) for products, categories, and orders.
 
-## 🚀 Getting Started
+---
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/ECartApp.git
-cd ECartApp
-```
+## 🚀 Features
 
+* **Navbar** – Angular Material navbar with active link highlighting.
+* **Reusable Product Card** – Input props: `name`, `imgPath`, `price`, `cardType`.
+* **Frequently Ordered Products** – Consumes `/getFrequentlyOrdered`.
+* **Category View** – Accordion layout (`/getCategories`).
+* **Cart & Orders Pages** – Shows cart items and past orders (`/getOrders`).
+* **Login Page** – Reactive form with validation (username/password).
 
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-
-### 3. Start the Development Server
-
-```bash
-ng serve
-```
-
-Open your browser at **http://localhost:4200**.
-The app will auto-reload on changes.
-
-***
+---
 
 ## 📂 Project Structure
 
-After running `ng new`:
-
 ```
-ECartApp/
-│── public/           → static files (images, json)
-│── src/
-│   ├── app/
-│   │   ├── app.component.ts
-│   │   ├── app.module.ts
-│   │   ├── components/   → feature components
-│   │   ├── services/     → reusable services
-│   │   └── models/       → TypeScript interfaces
-│   └── index.html
+src/
+│   index.html
+│   main.ts
+│   styles.css
 │
-├── angular.json          → Angular workspace config
-├── package.json          → dependencies & scripts
-└── README.md
+├───app
+│   │   app.component.*       # Root component
+│   │   app.config.ts         # Application config
+│   │   app.routes.ts         # Angular Router setup
+│   │
+│   ├───auth
+│   │   └───login             # Reactive login form
+│   │
+│   ├───core
+│   │   └───services
+│   │           data.service.ts   # SharedDataService with HttpClient
+│   │
+│   ├───features
+│   │   ├───home
+│   │   │   ├───cart
+│   │   │   ├───home-page
+│   │   │   └───order            # Uses AsyncPipe for typed Observables
+│   │   │
+│   │   └───products
+│   │       ├───category         # Angular Material accordion
+│   │       ├───frequently-ordered
+│   │       └───products-page
+│   │
+│   ├───layout
+│   │   └───navbar               # Navbar with route highlighting
+│   │
+│   ├───models                   # Typed interfaces
+│   │       category.model.ts
+│   │       order.model.ts
+│   │       product.model.ts
+│   │
+│   └───shared
+│       └───product              # Reusable product card
+│
+└───environments
+        environment.ts           # Backend API base URL
 ```
 
+---
 
-***
+## 🏗️ Tech Stack
 
-## ⚒️ Code Scaffolding
+* **Angular 19** – Standalone Components, Angular Router, HttpClient
+* **Angular Material** – Accordion, Navbar, Form controls
+* **Bootstrap / TailwindCSS** – Responsive layouts (optional styling)
+* **FastAPI Backend** – Serves product, category, and order data
 
-Generate a new component:
+---
+
+## ⚡ Setup Instructions
 
 ```bash
-ng generate component component-name
+# Clone repo
+git clone https://github.com/YOUR_USERNAME/angular-products-page.git
+cd angular-products-page
+
+# Install dependencies
+npm install
+
+# Run app
+ng serve
 ```
 
-List all available schematics:
+➡️ App runs at: `http://localhost:4200/`
+➡️ Backend (FastAPI) must be running at: `http://localhost:8000/`
 
-```bash
-ng generate --help
-```
+API Endpoints used:
 
+* `/getFrequentlyOrdered`
+* `/getCategories`
+* `/getProducts`
+* `/getOrders`
 
-***
+---
 
-## 📦 Build
+## 📸 Screenshots (to add later)
 
-Run a production build:
+| Home                          | Products                              | Categories                                | Orders                            | Login                           |
+| ----------------------------- | ------------------------------------- | ----------------------------------------- | --------------------------------- | ------------------------------- |
+| ![Home](screenshots/home.png) | ![Products](screenshots/products.png) | ![Categories](screenshots/categories.png) | ![Orders](screenshots/orders.png) | ![Login](screenshots/login.png) |
 
-```bash
-ng build
-```
+---
 
-The output will be in `dist/ECartApp/`.
-By default, the build is optimized for speed and performance.
+## 🔮 Future Improvements
 
-***
+* JWT Authentication with FastAPI backend.
+* NgRx / Angular Signals for state management.
+* Dark / Light theme toggle.
 
-## 🧪 Testing
+---
 
-### Unit Tests (Karma)
+## 👨‍💻 Author
 
-```bash
-ng test
-```
-
-
-### End-to-End Tests
-
-```bash
-ng e2e
-```
-
-(Choose \& configure a framework such as **Cypress** or **Protractor**.)
-
-***
-
-## 📚 Resources
-
-- [Angular CLI Overview \& Command Reference](https://angular.dev/tools/cli)
-- [Angular Official Docs](https://angular.dev)
-
-***
-
-## 🤝 Contribution
-
-1. **Fork** the repo
-2. Create a new feature branch
-
-```bash
-git checkout -b feature-name
-```
-
-3. Commit changes
-
-```bash
-git commit -m "Add new feature"
-```
-
-4. Push branch
-
-```bash
-git push origin feature-name
-```
-
-5. Open a **Pull Request**
-
-***
-
-## 💡 Future Enhancements
-
-- Product listing with filters
-- Cart service with persistence
-- Checkout flow
-- API integration
-
-***
+Built by [Harshal Sonone](https://www.linkedin.com/in/harshal-sonone-910617231/) – exploring **Angular + FastAPI full-stack development**.

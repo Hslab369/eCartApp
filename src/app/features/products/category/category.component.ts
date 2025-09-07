@@ -5,6 +5,7 @@ import { SharedDataService } from '../../../core/services/data.service';
 import { Category } from '../../../models/category.model';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-category',
@@ -12,14 +13,12 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css'],
 })
-export class CategoryComponent implements OnInit{
-  categories: Category[] = [];
+export class CategoryComponent implements OnInit {
+  categories$!: Observable<Category[]>;
 
-  constructor(private dataService: SharedDataService) {}
+  constructor(private shared: SharedDataService) {}
 
   ngOnInit(): void {
-    this.dataService.getCategories().subscribe((data) => {
-      this.categories = data;
-    });
+    this.categories$ = this.shared.getCategories();
   }
 }

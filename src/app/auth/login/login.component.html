@@ -1,26 +1,82 @@
-<div class="container mt-5" style="max-width: 400px">
-  <h2 class="text-center mb-4">Login</h2>
-  <form (ngSubmit)="onSubmit()">
+<div
+  class="container mt-5 p-4 rounded shadow-sm bg-light"
+  style="max-width: 400px"
+>
+  <h2 class="text-center mb-4 fw-bold text-primary">Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="mb-3">
-      <label class="form-label">Username</label>
+      <label class="form-label fw-semibold" for="username">Username</label>
       <input
         type="text"
-        [(ngModel)]="username"
-        name="username"
         class="form-control"
-        required
+        id="username"
+        formControlName="username"
+        placeholder="Enter your username"
+        [class.is-invalid]="
+          loginForm.get('username')?.invalid &&
+          (loginForm.get('username')?.dirty ||
+            loginForm.get('username')?.touched)
+        "
+        [class.is-valid]="
+          loginForm.get('username')?.valid &&
+          (loginForm.get('username')?.dirty ||
+            loginForm.get('username')?.touched)
+        "
       />
+      <div class="invalid-feedback">
+        <small *ngIf="loginForm.get('username')?.errors?.['required']"
+          >Username is required.</small
+        >
+        <small *ngIf="loginForm.get('username')?.errors?.['minlength']"
+          >Username must be at least 3 characters long.</small
+        >
+      </div>
     </div>
+
     <div class="mb-3">
-      <label class="form-label">Password</label>
+      <label class="form-label fw-semibold" for="password">Password</label>
       <input
         type="password"
-        [(ngModel)]="password"
-        name="password"
         class="form-control"
-        required
+        id="password"
+        formControlName="password"
+        placeholder="Enter your password"
+        [class.is-invalid]="
+          loginForm.get('password')?.invalid &&
+          (loginForm.get('password')?.dirty ||
+            loginForm.get('password')?.touched)
+        "
+        [class.is-valid]="
+          loginForm.get('password')?.valid &&
+          (loginForm.get('password')?.dirty ||
+            loginForm.get('password')?.touched)
+        "
       />
+      <div class="invalid-feedback">
+        <small *ngIf="loginForm.get('password')?.errors?.['required']"
+          >Password is required.</small
+        >
+        <small *ngIf="loginForm.get('password')?.errors?.['pattern']"
+          >Password can only contain letters.</small
+        >
+      </div>
     </div>
-    <button class="btn btn-primary w-100" type="submit">Login</button>
+
+    <div class="d-flex justify-content-between">
+      <button
+        type="submit"
+        class="btn btn-primary px-4"
+        [disabled]="loginForm.invalid"
+      >
+        Login
+      </button>
+      <button
+        type="reset"
+        class="btn btn-outline-secondary px-4"
+        (click)="loginForm.reset()"
+      >
+        Reset
+      </button>
+    </div>
   </form>
 </div>

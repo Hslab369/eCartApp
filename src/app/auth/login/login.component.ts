@@ -1,17 +1,30 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
+  loginForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+    });
+  }
+
   onSubmit() {
-    alert(`Logged in as: ${this.username}`);
+    alert(`Logged in as: ${this.loginForm.value.username}`);
   }
 }

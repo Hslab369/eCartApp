@@ -1,0 +1,71 @@
+<form class="m-5" [formGroup]="productbatchForm" (ngSubmit)="onSubmit()">
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <label class="form-label">Category</label>
+          <select class="form-select" formControlName="cat_id">
+            <option value="">-- Select Category --</option>
+            <option *ngFor="let cat of categories" [value]="cat.cat_id">
+              {{ cat.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              productbatchForm.get('cat_id')?.invalid &&
+              productbatchForm.get('cat_id')?.touched
+            "
+            class="text-danger small"
+          >
+            Category is required
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div formArrayName="names" class="mb-3">
+    <div *ngFor="let ctrl of names.controls; let i = index" class="mb-2">
+      <div class="input-group">
+        <input
+          [id]="'productName' + i"
+          type="text"
+          class="form-control"
+          [formControlName]="i"
+          placeholder="Enter product name"
+          [ngClass]="{
+            'is-invalid': names.controls[i].invalid && names.controls[i].touched
+          }"
+        />
+        <!-- <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="removeProduct(i)"
+          title="Remove product"
+        >
+          &times;
+        </button> -->
+      </div>
+      <div
+        *ngIf="names.controls[i].invalid && names.controls[i].touched"
+        class="text-danger small mt-1"
+      >
+        Product name is required
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2">
+    <button type="button" class="btn btn-primary" (click)="addProduct()">
+      Add Product
+    </button>
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="productbatchForm.invalid"
+    >
+      Submit
+    </button>
+  </div>
+</form>

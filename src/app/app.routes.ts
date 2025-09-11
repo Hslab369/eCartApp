@@ -26,6 +26,20 @@ export const routes: Routes = [
       import('./auth/login/login.component').then((m) => m.LoginComponent),
   },
   {
+    path: 'add-product',
+    loadComponent: () =>
+      import('./add-product/add-product.component').then(
+        (m) => m.AddProductComponent
+      ),
+  },
+  {
+    path: 'productbatch',
+    loadComponent: () =>
+      import('./product-batch/product-batch.component').then(
+        (m) => m.ProductBatchComponent
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },

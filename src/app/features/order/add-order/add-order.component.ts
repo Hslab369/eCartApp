@@ -29,6 +29,7 @@ export class AddOrderComponent {
   onSubmit(): void {
     if (this.orderForm.valid) {
       const payload: OrderCreate = this.orderForm.value;
+
       this.service.addOrder(payload).subscribe({
         next: (res) => {
           alert('Order created successfully');

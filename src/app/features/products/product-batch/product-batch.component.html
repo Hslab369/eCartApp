@@ -20,39 +20,70 @@
             Category is required
           </div>
         </div>
-        
       </div>
     </div>
   </div>
 
-  <div formArrayName="names" class="mb-3">
-    <div *ngFor="let ctrl of names.controls; let i = index" class="mb-2">
-      <div class="input-group">
-        <input
-          [id]="'productName' + i"
-          type="text"
-          class="form-control"
-          [formControlName]="i"
-          placeholder="Enter product name"
-          [ngClass]="{
-            'is-invalid': names.controls[i].invalid && names.controls[i].touched
-          }"
-        />
-        <button
-          type="button"
-          class="btn btn-outline-danger"
-          (click)="removeProduct(i)"
-          title="Remove product"
-        >
-          &times;
-        </button>
-      </div>
+  <div formArrayName="products" class="mb-3">
+    <div
+      *ngFor="let product of products.controls; let i = index"
+      [formGroupName]="i"
+      class="mb-4"
+    >
+      <input
+        type="text"
+        class="form-control mb-2"
+        formControlName="name"
+        placeholder="Product name"
+        [ngClass]="{
+          'is-invalid':
+            product.get('name')?.invalid && product.get('name')?.touched
+        }"
+      />
       <div
-        *ngIf="names.controls[i].invalid && names.controls[i].touched"
-        class="text-danger small mt-1"
+        *ngIf="product.get('name')?.invalid && product.get('name')?.touched"
+        class="text-danger small"
       >
-        Product name is required
+        Product name is required.
       </div>
+
+      <input
+        type="number"
+        class="form-control mb-2"
+        formControlName="price"
+        placeholder="Price"
+        [ngClass]="{
+          'is-invalid':
+            product.get('price')?.invalid && product.get('price')?.touched
+        }"
+      />
+      <div
+        *ngIf="product.get('price')?.invalid && product.get('price')?.touched"
+        class="text-danger small"
+      >
+        Price must be greater than 0.
+      </div>
+
+      <div class="form-check mb-2">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          formControlName="is_popular"
+          id="popular{{ i }}"
+        />
+        <label class="form-check-label" for="popular{{ i }}"
+          >is Popular Product</label
+        >
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-outline-danger btn-sm"
+        (click)="removeProduct(i)"
+        *ngIf="products.length > 1"
+      >
+        Remove
+      </button>
     </div>
   </div>
 

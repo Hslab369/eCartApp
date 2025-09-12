@@ -3,11 +3,6 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
-  {
-    path: 'home',
     loadComponent: () =>
       import('./features/home/home-page/home-page.component').then(
         (m) => m.HomePageComponent
@@ -21,11 +16,6 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'login',
-    loadComponent: () =>
-      import('./auth/login/login.component').then((m) => m.LoginComponent),
-  },
-  {
     path: 'add-product',
     loadComponent: () =>
       import('./features/products/add-product/add-product.component').then(
@@ -35,9 +25,9 @@ export const routes: Routes = [
   {
     path: 'add-category',
     loadComponent: () =>
-      import('./features/products/add-category/add-category.component').then(
-        (m) => m.AddCategoryComponent
-      ),
+      import(
+        './features/products/category/add-category/add-category.component'
+      ).then((m) => m.AddCategoryComponent),
   },
   {
     path: 'productbatch',
@@ -54,7 +44,9 @@ export const routes: Routes = [
       ),
   },
   {
-    path: '**',
-    redirectTo: 'home',
+    path: 'login',
+    loadComponent: () =>
+      import('./auth/login/login.component').then((m) => m.LoginComponent),
   },
+  { path: '**', redirectTo: '' },
 ];

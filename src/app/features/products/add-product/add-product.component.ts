@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { SharedDataService } from '../../../core/services/data.service';
 import { CategoryWithId } from '../../../models/categorywithid.model';
+import { ProductCreate } from '../../../models/productcreate.model';
 
 @Component({
   selector: 'app-add-product',
@@ -41,8 +42,9 @@ export class AddProductComponent {
 
   onSubmit(): void {
     if (this.productForm.valid) {
-      console.log(this.productForm.value);
-      this.service.addProduct(this.productForm.value).subscribe({
+      const payload: ProductCreate = this.productForm.value;
+      
+      this.service.addProduct(payload).subscribe({
         next: (res) => {
           alert('Product saved successfully!');
           this.productForm.reset();

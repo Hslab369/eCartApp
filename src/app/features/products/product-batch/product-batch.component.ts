@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { SharedDataService } from '../../../core/services/data.service';
 import { CommonModule } from '@angular/common';
+import { ProductBatch } from '../../../models/productbatch.model';
 
 @Component({
   selector: 'app-product-batch',
@@ -26,7 +27,13 @@ export class ProductBatchComponent implements OnInit {
   constructor(private fb: FormBuilder, private service: SharedDataService) {
     this.productbatchForm = this.fb.group({
       cat_id: ['', Validators.required],
-      names: this.fb.array([this.fb.control('', Validators.required)]),
+      products: this.fb.array([
+        this.fb.group({
+          name: ['', Validators.required],
+          price: [0, [Validators.required, Validators.min(0.01)]],
+          is_popular: [false],
+        }),
+      ]),
     });
   }
 
@@ -45,19 +52,31 @@ export class ProductBatchComponent implements OnInit {
     return this.productbatchForm.get('names') as FormArray;
   }
 
+  get products(): FormArray {
+    return this.productbatchForm.get('products') as FormArray;
+  }
+
   addProduct(): void {
-    this.names.push(this.fb.control('', Validators.required));
+    this.products.push(
+      this.fb.group({
+        name: ['', Validators.required],
+        price: [0, [Validators.required, Validators.min(0.01)]],
+        is_popular: [false],
+      })
+    );
   }
 
   removeProduct(index: number): void {
-    if (this.names.length > 1) {
-      this.names.removeAt(index);
+    if (this.products.length > 1) {
+      this.products.removeAt(index);
     }
   }
 
   onSubmit(): void {
     if (this.productbatchForm.valid) {
-      this.service.addProductBatch(this.productbatchForm.value).subscribe({
+      const payload: ProductBatch = this.productbatchForm.value;
+
+      this.service.addProductBatch(payload).subscribe({
         next: (res) => {
           alert('Product saved successfully!');
           this.productbatchForm.reset();
@@ -67,8 +86,6 @@ export class ProductBatchComponent implements OnInit {
           alert('Failed to save product');
         },
       });
-    } else {
-      this.productbatchForm.markAllAsTouched();
     }
   }
 }

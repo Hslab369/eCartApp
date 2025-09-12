@@ -6,8 +6,8 @@ import {
   FormBuilder,
   FormGroup,
 } from '@angular/forms';
-import { SharedDataService } from '../core/services/data.service';
-import { CategoryWithId } from '../models/categorywithid.model';
+import { SharedDataService } from '../../../core/services/data.service';
+import { CategoryWithId } from '../../../models/categorywithid.model';
 
 @Component({
   selector: 'app-add-product',

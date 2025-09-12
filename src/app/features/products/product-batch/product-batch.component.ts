@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryWithId } from '../models/categorywithid.model';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { SharedDataService } from '../core/services/data.service';
+import { CategoryWithId } from '../../../models/categorywithid.model';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  FormControlName,
+} from '@angular/forms';
+import { SharedDataService } from '../../../core/services/data.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,7 +17,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './product-batch.component.html',
-  styleUrls: ['./product-batch.component.css']
+  styleUrls: ['./product-batch.component.css'],
 })
 export class ProductBatchComponent implements OnInit {
   productbatchForm: FormGroup;
@@ -18,7 +26,7 @@ export class ProductBatchComponent implements OnInit {
   constructor(private fb: FormBuilder, private service: SharedDataService) {
     this.productbatchForm = this.fb.group({
       cat_id: ['', Validators.required],
-      names: this.fb.array([this.fb.control('', Validators.required)])
+      names: this.fb.array([this.fb.control('', Validators.required)]),
     });
   }
 
@@ -41,6 +49,11 @@ export class ProductBatchComponent implements OnInit {
     this.names.push(this.fb.control('', Validators.required));
   }
 
+  removeProduct(index: number): void {
+    if (this.names.length > 1) {
+      this.names.removeAt(index);
+    }
+  }
 
   onSubmit(): void {
     if (this.productbatchForm.valid) {
@@ -59,5 +72,3 @@ export class ProductBatchComponent implements OnInit {
     }
   }
 }
-
-

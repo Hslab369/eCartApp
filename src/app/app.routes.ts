@@ -28,15 +28,29 @@ export const routes: Routes = [
   {
     path: 'add-product',
     loadComponent: () =>
-      import('./add-product/add-product.component').then(
+      import('./features/products/add-product/add-product.component').then(
         (m) => m.AddProductComponent
+      ),
+  },
+  {
+    path: 'add-category',
+    loadComponent: () =>
+      import('./features/products/add-category/add-category.component').then(
+        (m) => m.AddCategoryComponent
       ),
   },
   {
     path: 'productbatch',
     loadComponent: () =>
-      import('./product-batch/product-batch.component').then(
+      import('./features/products/product-batch/product-batch.component').then(
         (m) => m.ProductBatchComponent
+      ),
+  },
+  {
+    path: 'add-order',
+    loadComponent: () =>
+      import('./features/order/add-order/add-order.component').then(
+        (m) => m.AddOrderComponent
       ),
   },
   {

@@ -7,6 +7,8 @@ import { Order } from '../../models/order.model';
 import { environment } from '../../../environments/environment';
 import { CategoryWithId } from '../../models/categorywithid.model';
 import { ProductCreate } from '../../models/productcreate.model';
+import { CategoryCreate } from '../../models/categorycreate.model';
+import { OrderCreate } from '../../models/ordercreate.model';
 import { ProductReadWithId } from '../../models/productwithid.model';
 import { ProductBatch } from '../../models/productbatch.model';
 
@@ -16,7 +18,7 @@ import { ProductBatch } from '../../models/productbatch.model';
 export class SharedDataService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getFrequentlyOrdered(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}/getFrequentlyOrdered`);
@@ -27,7 +29,9 @@ export class SharedDataService {
   }
 
   getCategorieswithId(): Observable<CategoryWithId[]> {
-    return this.http.get<CategoryWithId[]>(`${this.apiUrl}/getCategorieswithId`);
+    return this.http.get<CategoryWithId[]>(
+      `${this.apiUrl}/getCategorieswithId`
+    );
   }
 
   getProducts(): Observable<Product[]> {
@@ -39,10 +43,27 @@ export class SharedDataService {
   }
 
   addProduct(product: ProductCreate): Observable<ProductReadWithId> {
-    return this.http.post<ProductReadWithId>(`${this.apiUrl}/addProduct`, product);
+    return this.http.post<ProductReadWithId>(
+      `${this.apiUrl}/addProduct`,
+      product
+    );
   }
 
   addProductBatch(products: ProductBatch): Observable<ProductReadWithId[]> {
-    return this.http.post<ProductReadWithId[]>(`${this.apiUrl}/addProductBatch`, products);
+    return this.http.post<ProductReadWithId[]>(
+      `${this.apiUrl}/addProductBatch`,
+      products
+    );
+  }
+
+  addCategory(category: CategoryCreate): Observable<CategoryWithId> {
+    return this.http.post<CategoryWithId>(
+      `${this.apiUrl}/addCategory`,
+      category
+    );
+  }
+
+  addOrder(order: OrderCreate): Observable<Order> {
+    return this.http.post<Order>(`${this.apiUrl}/addOrder`, order);
   }
 }

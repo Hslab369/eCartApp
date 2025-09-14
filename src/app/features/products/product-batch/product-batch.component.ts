@@ -11,7 +11,6 @@ import {
 } from '@angular/forms';
 import { SharedDataService } from '../../../core/services/data.service';
 import { CommonModule } from '@angular/common';
-import { ProductBatch } from '../../../models/productbatch.model';
 
 @Component({
   selector: 'app-product-batch',
@@ -74,8 +73,8 @@ export class ProductBatchComponent implements OnInit {
 
   onSubmit(): void {
     if (this.productbatchForm.valid) {
-      const payload: ProductBatch = this.productbatchForm.value;
-
+      const payload = this.productbatchForm.value;
+      console.table('Form Submitted', payload);
       this.service.addProductBatch(payload).subscribe({
         next: (res) => {
           alert('Product saved successfully!');

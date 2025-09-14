@@ -1,10 +1,13 @@
-<form class="m-5" [formGroup]="productbatchForm" (ngSubmit)="onSubmit()">
-  <div class="card mb-4">
+<form class="container py-5" [formGroup]="productbatchForm" (ngSubmit)="onSubmit()">
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Product Batch Entry</h5>
+    </div>
     <div class="card-body">
-      <div class="row">
-        <div class="col-md-8">
-          <label class="form-label">Category</label>
-          <select class="form-select" formControlName="cat_id">
+      <div class="row g-3 align-items-center">
+        <div class="col-12 col-md-6 col-lg-4">
+          <label for="category-select" class="form-label fw-bold">Category</label>
+          <select id="category-select" class="form-select" formControlName="cat_id">
             <option value="">-- Select Category --</option>
             <option *ngFor="let cat of categories" [value]="cat.cat_id">
               {{ cat.name }}
@@ -15,7 +18,7 @@
               productbatchForm.get('cat_id')?.invalid &&
               productbatchForm.get('cat_id')?.touched
             "
-            class="text-danger small"
+            class="text-danger mt-1 small"
           >
             Category is required
           </div>
@@ -24,79 +27,97 @@
     </div>
   </div>
 
-  <div formArrayName="products" class="mb-3">
+  <div formArrayName="products">
     <div
       *ngFor="let product of products.controls; let i = index"
       [formGroupName]="i"
-      class="mb-4"
+      class="card shadow-sm border-secondary mb-3 bg-light"
     >
-      <input
-        type="text"
-        class="form-control mb-2"
-        formControlName="name"
-        placeholder="Product name"
-        [ngClass]="{
-          'is-invalid':
-            product.get('name')?.invalid && product.get('name')?.touched
-        }"
-      />
-      <div
-        *ngIf="product.get('name')?.invalid && product.get('name')?.touched"
-        class="text-danger small"
-      >
-        Product name is required.
-      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label for="product-name-{{ i }}" class="form-label visually-hidden"
+              >Product Name</label
+            >
+            <input
+              id="product-name-{{ i }}"
+              type="text"
+              class="form-control"
+              formControlName="name"
+              placeholder="Product name"
+              [ngClass]="{
+                'is-invalid':
+                  product.get('name')?.invalid && product.get('name')?.touched
+              }"
+            />
+            <div
+              *ngIf="
+                product.get('name')?.invalid && product.get('name')?.touched
+              "
+              class="invalid-feedback"
+            >
+              Product name is required.
+            </div>
+          </div>
 
-      <input
-        type="number"
-        class="form-control mb-2"
-        formControlName="price"
-        placeholder="Price"
-        [ngClass]="{
-          'is-invalid':
-            product.get('price')?.invalid && product.get('price')?.touched
-        }"
-      />
-      <div
-        *ngIf="product.get('price')?.invalid && product.get('price')?.touched"
-        class="text-danger small"
-      >
-        Price must be greater than 0.
-      </div>
+          <div class="col-12 col-md-4">
+            <label for="product-price-{{ i }}" class="form-label visually-hidden"
+              >Price</label
+            >
+            <input
+              id="product-price-{{ i }}"
+              type="number"
+              class="form-control"
+              formControlName="price"
+              placeholder="Price"
+              [ngClass]="{
+                'is-invalid':
+                  product.get('price')?.invalid && product.get('price')?.touched
+              }"
+            />
+            <div
+              *ngIf="
+                product.get('price')?.invalid && product.get('price')?.touched
+              "
+              class="invalid-feedback"
+            >
+              Price must be greater than 0.
+            </div>
+          </div>
 
-      <div class="form-check mb-2">
-        <input
-          type="checkbox"
-          class="form-check-input"
-          formControlName="is_popular"
-          id="popular{{ i }}"
-        />
-        <label class="form-check-label" for="popular{{ i }}"
-          >is Popular Product</label
+          <div class="col-12 col-md-2 d-flex align-items-center">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                formControlName="is_popular"
+                id="popular-{{ i }}"
+              />
+              <label class="form-check-label" for="popular-{{ i }}">
+                Popular
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end p-2" *ngIf="products.length > 1">
+        <button
+          type="button"
+          class="btn btn-outline-danger btn-sm"
+          (click)="removeProduct(i)"
         >
+          Remove
+        </button>
       </div>
-
-      <button
-        type="button"
-        class="btn btn-outline-danger btn-sm"
-        (click)="removeProduct(i)"
-        *ngIf="products.length > 1"
-      >
-        Remove
-      </button>
     </div>
   </div>
 
-  <div class="d-flex gap-2">
+  <div class="d-flex gap-2 justify-content-end mt-4">
     <button type="button" class="btn btn-primary" (click)="addProduct()">
-      Add Product
+      <i class="bi bi-plus-lg me-1"></i>Add Product
     </button>
-    <button
-      type="submit"
-      class="btn btn-success"
-      [disabled]="productbatchForm.invalid"
-    >
-      Submit
+    <button type="submit" class="btn btn-success" [disabled]="productbatchForm.invalid">
+      <i class="bi bi-check-lg me-1"></i>Submit
     </button>
   </div>
 </form>

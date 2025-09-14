@@ -43,7 +43,7 @@ export class AddProductComponent {
   onSubmit(): void {
     if (this.productForm.valid) {
       const payload: ProductCreate = this.productForm.value;
-      
+
       this.service.addProduct(payload).subscribe({
         next: (res) => {
           alert('Product saved successfully!');

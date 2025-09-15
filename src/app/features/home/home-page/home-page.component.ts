@@ -6,6 +6,6 @@ import { CartComponent } from '../../cart/cart.component';
   selector: 'app-home-page',
   imports: [OrderComponent, CartComponent],
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css'],
+  // styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent {}

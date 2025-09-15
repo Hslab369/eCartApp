@@ -1,13 +1,23 @@
-<form class="container py-5" [formGroup]="productbatchForm" (ngSubmit)="onSubmit()">
+<form
+  class="container py-4"
+  [formGroup]="productbatchForm"
+  (ngSubmit)="onSubmit()"
+>
   <div class="card shadow-sm mb-4">
     <div class="card-header bg-primary text-white">
-      <h5 class="mb-0">Product Batch Entry</h5>
+      <h5 class="mb-0">Add New Products</h5>
     </div>
     <div class="card-body">
       <div class="row g-3 align-items-center">
         <div class="col-12 col-md-6 col-lg-4">
-          <label for="category-select" class="form-label fw-bold">Category</label>
-          <select id="category-select" class="form-select" formControlName="cat_id">
+          <label for="category-select" class="form-label fw-bold"
+            >Category</label
+          >
+          <select
+            id="category-select"
+            class="form-select"
+            formControlName="cat_id"
+          >
             <option value="">-- Select Category --</option>
             <option *ngFor="let cat of categories" [value]="cat.cat_id">
               {{ cat.name }}
@@ -27,6 +37,7 @@
     </div>
   </div>
 
+  <h4 class="mb-3 fw-semibold text-center">Products to Add</h4>
   <div formArrayName="products">
     <div
       *ngFor="let product of products.controls; let i = index"
@@ -61,7 +72,9 @@
           </div>
 
           <div class="col-12 col-md-4">
-            <label for="product-price-{{ i }}" class="form-label visually-hidden"
+            <label
+              for="product-price-{{ i }}"
+              class="form-label visually-hidden"
               >Price</label
             >
             <input
@@ -100,24 +113,35 @@
           </div>
         </div>
       </div>
-      <div class="card-footer d-flex justify-content-end p-2" *ngIf="products.length > 1">
+      <div
+        class="card-footer d-flex justify-content-end p-2"
+        *ngIf="products.length > 1"
+      >
         <button
           type="button"
-          class="btn btn-outline-danger btn-sm"
+          class="btn btn-outline-danger btn-sm d-flex align-items-center gap-1"
           (click)="removeProduct(i)"
         >
-          Remove
+          <i class="bi bi-trash"></i>Remove
         </button>
       </div>
     </div>
   </div>
 
   <div class="d-flex gap-2 justify-content-end mt-4">
-    <button type="button" class="btn btn-primary" (click)="addProduct()">
-      <i class="bi bi-plus-lg me-1"></i>Add Product
+    <button
+      type="button"
+      class="btn btn-primary d-flex align-items-center gap-1"
+      (click)="addProduct()"
+    >
+      <i class="bi bi-plus-lg"></i>Add Product
     </button>
-    <button type="submit" class="btn btn-success" [disabled]="productbatchForm.invalid">
-      <i class="bi bi-check-lg me-1"></i>Submit
+    <button
+      type="submit"
+      class="btn btn-success d-flex align-items-center gap-1"
+      [disabled]="productbatchForm.invalid"
+    >
+      <i class="bi bi-check-lg"></i>Submit
     </button>
   </div>
 </form>

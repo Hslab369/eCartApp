@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-frequently-ordered',
   imports: [CommonModule, ProductComponent],
   templateUrl: './frequently-ordered.component.html',
-  styleUrls: ['./frequently-ordered.component.css'],
+  // styleUrls: ['./frequently-ordered.component.css'],
 })
 export class FrequentlyOrderedComponent implements OnInit{
   products: Product[] = [];

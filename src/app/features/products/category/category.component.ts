@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   selector: 'app-category',
   imports: [CommonModule, MatExpansionModule, MatIconModule, ProductComponent],
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css'],
+  // styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
   categories$!: Observable<Category[]>;

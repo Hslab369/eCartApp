@@ -7,6 +7,6 @@ import { CategoryComponent } from '../category/category.component';
   selector: 'app-products-page',
   imports: [CommonModule, FrequentlyOrderedComponent, CategoryComponent],
   templateUrl: './products-page.component.html',
-  styleUrl: './products-page.component.css',
+  // styleUrl: './products-page.component.css',
 })
 export class ProductsPageComponent {}

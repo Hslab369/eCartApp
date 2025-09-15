@@ -14,7 +14,7 @@ import { ProductCreate } from '../../../models/productcreate.model';
   selector: 'app-add-product',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css'],
+  // styleUrls: ['./add-product.component.css'],
 })
 export class AddProductComponent {
   productForm: FormGroup;

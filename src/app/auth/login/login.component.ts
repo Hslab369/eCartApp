@@ -12,7 +12,7 @@ import {
   selector: 'app-login',
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  // styleUrl: './login.component.css',
 })
 export class LoginComponent {
   loginForm: FormGroup;

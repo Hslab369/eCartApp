@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   selector: 'app-order',
   imports: [CommonModule],
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css'],
+  // styleUrls: ['./order.component.css'],
 })
 export class OrderComponent implements OnInit {
   orders$!: Observable<Order[]>;

@@ -10,7 +10,7 @@ import { SharedDataService } from '../../core/services/data.service';
   standalone: true,
   imports: [CommonModule, ProductComponent],
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css'],
+  // styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
   products$!: Observable<Product[]>; // Async Observable instead of array

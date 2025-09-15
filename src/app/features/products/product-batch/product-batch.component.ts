@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './product-batch.component.html',
-  styleUrls: ['./product-batch.component.css'],
+  // styleUrls: ['./product-batch.component.css'],
 })
 export class ProductBatchComponent implements OnInit {
   productbatchForm: FormGroup;

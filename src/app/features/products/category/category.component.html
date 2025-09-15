@@ -1,5 +1,5 @@
-<div class="container mt-4">
-  <h3 class="mb-3 fw-semibold">Categories</h3>
+<div class="container my-4 pb-5">
+  <h3 class="mb-4 fw-semibold">Categories</h3>
 
   <mat-accordion multi>
     <mat-expansion-panel *ngFor="let cat of categories$ | async">
@@ -13,8 +13,8 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <div class="row g-4">
-        <div class="col-md-3" *ngFor="let item of cat.products">
+      <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        <div class="col" *ngFor="let item of cat.products">
           <app-product
             [name]="item.name"
             [imgPath]="item.imgPath"

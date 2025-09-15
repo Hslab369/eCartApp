@@ -6,7 +6,7 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
   selector: 'app-root',
   imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  // styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'eCartApp';

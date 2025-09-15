@@ -1,6 +1,6 @@
 # 🛒 Angular eCartApp (Frontend)
 
-A modern **Angular 19 e-commerce demo app** built with standalone components, Angular Material, and typed Observables — connected to a **FastAPI backend**.  
+A modern **Angular 19 e-commerce demo app** built with standalone components and Bootstrap 5 for a consistent and responsive UI. It is connected to a **FastAPI backend**.  
 This repo is intended for **learning, demos, or as a starter template** for small Angular + FastAPI projects.
 
 [![GitHub stars](https://img.shields.io/github/stars/Hslab369/eCartApp?style=flat-square)](https://github.com/Hslab369/eCartApp/stargazers)

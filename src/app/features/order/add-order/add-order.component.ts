@@ -13,7 +13,6 @@ import { OrderCreate } from '../../../models/ordercreate.model';
   selector: 'app-add-order',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-order.component.html',
-  styleUrls: ['./add-order.component.css'],
 })
 export class AddOrderComponent {
   orderForm: FormGroup;

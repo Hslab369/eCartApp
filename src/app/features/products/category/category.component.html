@@ -1,28 +1,46 @@
-<div class="container my-4 pb-5">
-  <h3 class="mb-4 fw-semibold">Categories</h3>
+<div class="container mt-4">
+  <h3 class="mb-3 fw-semibold">Categories</h3>
 
-  <mat-accordion multi>
-    <mat-expansion-panel *ngFor="let cat of categories$ | async">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon class="me-2">category</mat-icon>
+  <div class="accordion" id="categoryAccordion">
+    <div
+      class="accordion-item"
+      *ngFor="let cat of categories$ | async; let i = index"
+    >
+      <h2 class="accordion-header" [id]="'heading' + i">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#collapse' + i"
+          aria-expanded="false"
+          [attr.aria-controls]="'collapse' + i"
+        >
+          <i class="bi bi-tag me-2"></i>
           {{ cat.name }}
-        </mat-panel-title>
-        <mat-panel-description>
-          {{ cat.products.length }} items
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-        <div class="col" *ngFor="let item of cat.products">
-          <app-product
-            [name]="item.name"
-            [imgPath]="item.imgPath"
-            [price]="item.price"
-            cardType="normal"
-          ></app-product>
+          <span class="ms-auto me-3">{{ cat.products.length }} items</span>
+        </button>
+      </h2>
+      <div
+        [id]="'collapse' + i"
+        class="accordion-collapse collapse"
+        [attr.aria-labelledby]="'heading' + i"
+        data-bs-parent="#categoryAccordion"
+      >
+        <div class="accordion-body">
+          <div
+            class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"
+          >
+            <div class="col" *ngFor="let item of cat.products">
+              <app-product
+                [name]="item.name"
+                [imgPath]="item.imgPath"
+                [price]="item.price"
+                cardType="normal"
+              ></app-product>
+            </div>
+          </div>
         </div>
       </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </div>
+  </div>
 </div>

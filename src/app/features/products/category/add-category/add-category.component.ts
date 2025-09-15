@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-add-category',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-category.component.html',
-  styleUrl: './add-category.component.css',
 })
 export class AddCategoryComponent {
   categoryForm: FormGroup;
